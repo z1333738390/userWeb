@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xy.dao.AbsBaiduStagesDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.xy.dto.AbsBaiduStagesDetails" >
+    <id column="schedule_id" property="scheduleId" jdbcType="VARCHAR" />
+    <result column="schedule_no" property="scheduleNo" jdbcType="INTEGER" />
+    <result column="start_date" property="startDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="amounts" property="amounts" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    schedule_id, schedule_no, start_date, end_date, amounts
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from abs_baidu_stages_details
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from abs_baidu_stages_details
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xy.dto.AbsBaiduStagesDetails" >
+    insert into abs_baidu_stages_details (schedule_id, schedule_no, start_date, 
+      end_date, amounts)
+    values (#{scheduleId,jdbcType=VARCHAR}, #{scheduleNo,jdbcType=INTEGER}, #{startDate,jdbcType=VARCHAR}, 
+      #{endDate,jdbcType=VARCHAR}, #{amounts,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xy.dto.AbsBaiduStagesDetails" >
+    insert into abs_baidu_stages_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        schedule_id,
+      </if>
+      <if test="scheduleNo != null" >
+        schedule_no,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="amounts != null" >
+        amounts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scheduleId != null" >
+        #{scheduleId,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduleNo != null" >
+        #{scheduleNo,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="amounts != null" >
+        #{amounts,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xy.dto.AbsBaiduStagesDetails" >
+    update abs_baidu_stages_details
+    <set >
+      <if test="scheduleNo != null" >
+        schedule_no = #{scheduleNo,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="amounts != null" >
+        amounts = #{amounts,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xy.dto.AbsBaiduStagesDetails" >
+    update abs_baidu_stages_details
+    set schedule_no = #{scheduleNo,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      amounts = #{amounts,jdbcType=VARCHAR}
+    where schedule_id = #{scheduleId,jdbcType=VARCHAR}
+  </update>
+</mapper>
