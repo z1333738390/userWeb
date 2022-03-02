@@ -49,6 +49,14 @@ public class TestController {
 		map.put("msg", "success");
 		System.out.println(JSON.toJSONString(map));
 	}
+
+	@Test
+	public void testBB(){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("result", "2000");
+		map.put("msg", "success");
+		System.out.println(JSON.toJSONString(map));
+	}
 	
 	@RequestMapping(value = "saveHibernateData",method = RequestMethod.POST )
 	@ResponseBody
